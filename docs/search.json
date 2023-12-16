@@ -1,0 +1,128 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Exploring Social Justice Engagement in Technical Communication Publications",
+    "section": "",
+    "text": "This website includes information about the methods and findings of my final project. The webpages are organized by the three main tools I used to analyze my data: R Studio, Bibliometrix, and Excel."
+  },
+  {
+    "objectID": "about.html",
+    "href": "about.html",
+    "title": "About",
+    "section": "",
+    "text": "About this site\n\n1 + 1\n\n[1] 2"
+  },
+  {
+    "objectID": "coding.html",
+    "href": "coding.html",
+    "title": "R Studio",
+    "section": "",
+    "text": "I used the following libraries to clean my data and make some plots.\n```{r}\nlibrary(tidyverse)\nlibrary(readr)\nlibrary(janitor)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(readr)\n```"
+  },
+  {
+    "objectID": "coding.html#loading-libraries",
+    "href": "coding.html#loading-libraries",
+    "title": "R Studio",
+    "section": "",
+    "text": "I used the following libraries to clean my data and make some plots.\n```{r}\nlibrary(tidyverse)\nlibrary(readr)\nlibrary(janitor)\nlibrary(dplyr)\nlibrary(ggplot2)\nlibrary(readr)\n```"
+  },
+  {
+    "objectID": "coding.html#cleaning-the-data",
+    "href": "coding.html#cleaning-the-data",
+    "title": "R Studio",
+    "section": "Cleaning the data",
+    "text": "Cleaning the data\nThis code formats all of the names in the same way (lowercase and replaces spaces with underscores) and keeps only the data columns I’m interested in.\n```{r}\nSJ_data_raw &lt;- read_csv(\"SJ in Tech Comm.csv\")\n\nSJ_data_raw &lt;- SJ_data_raw %&gt;%\n  clean_names()\n  \nSJ_data_clean &lt;- SJ_data_raw %&gt;%\n  select(authors,\n         editors,\n         title,\n         source_title,\n         total_citations,\n         average_per_year,\n         publication_year)\n```"
+  },
+  {
+    "objectID": "coding.html#initial-plots",
+    "href": "coding.html#initial-plots",
+    "title": "R Studio",
+    "section": "Initial Plots",
+    "text": "Initial Plots\nThe following plots include the information I wanted, but I wanted them to look nicer because the axis titles in Figures 1 and 2 and the index title in Figure 2 weren’t formatted properly.\n\n\n\nFigure 1: This figure shows the number of articles and chapters involving social justice in technical communication published per year. The number of publications peaks in 2022. I don’t quite know how to account for the peak in 2022 and the steep drop in 2023, especially because social justice is still a trendy/highly publishable topic in 2023. A lot of social justice in technical communication scholarship isn’t accessible via Web of Science so since there is a lot of social justice scholarship missing from this figure, it’s difficult to make meaningful interpretations of it.\n\n\n\n\n\nFigure 2: This figure shows the number of articles and chapters involving social justice in technical communication published per year by journal/book title. A lot of the recent publications involving social justice in techncial communication are published in IEEE and TCQ."
+  },
+  {
+    "objectID": "coding.html#initial-codes-for-plots",
+    "href": "coding.html#initial-codes-for-plots",
+    "title": "R Studio",
+    "section": "Initial Codes for Plots",
+    "text": "Initial Codes for Plots\nI followed our Week 2 class demo to get these plots.\n```{r}\n# Count of articles per year\nggplot(SJ_data_clean, aes(x = publication_year)) +\n  geom_bar() +\n  labs(title = \"Articles per Year of Social Justice in Tech Comm\",\n       X = \"Publication Year\",\n       Y = \"Number of Articles\") +\n  theme_light()\n\n# Count of articles per year by journal/book title\nggplot(SJ_data_clean, aes(x = publication_year, fill = source_title)) +\n  geom_bar() +\n  labs(title = \"Articles per Year by Journal\",\n       X = \"Publication Year\",\n       Y = \"Number of Articles\") +\n  theme_light()\n```"
+  },
+  {
+    "objectID": "coding.html#codes-for-pretty-plots",
+    "href": "coding.html#codes-for-pretty-plots",
+    "title": "R Studio",
+    "section": "Codes for Pretty Plots",
+    "text": "Codes for Pretty Plots\nI used the following code to make Figures 1 and 2 look better. You’ll notice minor changes in the code here, like using lowercase “x” and “y,” a different theme, the addition of the “light blue” color for the first graph, and the “fill” line for the second graph.\n```{r}\n# Count of Articles per Year\nggplot(SJ_data_clean, aes(x = publication_year)) +\n  geom_bar(fill=\"lightblue\") +\n  labs(title = \"Articles per Year of Social Justice in Tech Comm\",\n       x = \"Publication Year\",\n       y = \"Number of Articles\") +\n  theme_minimal()\n\n# Count of articles per Year by Journal/Book\nggplot(SJ_data_clean, aes(x = publication_year, fill = source_title)) +\n  geom_bar() +\n  labs(title = \"Articles per Year by Journal/Book Title\",\n       x = \"Publication Year\",\n       y = \"Number of Articles\",\n       fill = \"Journal or Book Title\") +\n  theme_minimal()\n```"
+  },
+  {
+    "objectID": "coding.html#pretty-plots",
+    "href": "coding.html#pretty-plots",
+    "title": "R Studio",
+    "section": "Pretty Plots",
+    "text": "Pretty Plots\nThese plots display the same information as Figures 1 and 2 but the formatting of Figures 3 and 4 looks better. I changed the theme of Figure 3, made the axis titles look better in both figures, and changed the index title in Figure 4. I spent a lot of time Googling and consulting others about how to fix these minor formatting issues.\n\n\n\nFigure 3: This shows the same information as Figure 1 with nicer looking axis titles and a new color.\n\n\n\n\n\nFigure 4: This shows the same information as Figure 2 with a nicer looking y and x axis title and index title."
+  },
+  {
+    "objectID": "coding.html#repeated-cleaning-and-plotting-for-second-data-set",
+    "href": "coding.html#repeated-cleaning-and-plotting-for-second-data-set",
+    "title": "R Studio",
+    "section": "Repeated Cleaning and Plotting for Second Data Set",
+    "text": "Repeated Cleaning and Plotting for Second Data Set\n\n\n\nFigure 5: This figure shows the number of publications citing Jones, Moore, and Walton (2016) published per year.There’s a steep uptick of publications in 2021 and 2022 and then a drop again in 2023. I assume the drop in citations could be related to a couple of things. 1. Similar to what I mentioned for Figure 1, Web of Science doesn’t have access to all of the publications citing the 2016 Jones, Moore, and Walton article. Google scholar says their article has been cited 326 times, and Web of Science only showed me 125 of those publications. 2. Jones, Moore, and Walton have more recent publications, like a book written in 2019, so I assume publications may be citing their more recent work more now than this 2016 article.\n\n\n\n\n\nFigure 6. This figure shows the number of publications citing Jones, Moore, and Walton (2016) published per year by journal/book title. Most of the journals and books listed in the index of this figure are from the field of technical communication but some journals and books outside of technical communication are represented here. These include the fields of rhetoric, composition, and communication studies. TCQ (in bright pink) has the most publications citing Jones, Moore, and Walton (2016).\n\n\nThe plots I created in R Studio don’t tie directly back to my research questions but they provide some helpful context for each of the data sets."
+  },
+  {
+    "objectID": "index.html#research-questions",
+    "href": "index.html#research-questions",
+    "title": "Exploring Social Justice Engagement in Technical Communication Publications",
+    "section": "Research Questions",
+    "text": "Research Questions\nCan I measure engagement with social justice in tech comm scholarship? If so, what do limited and strong engagement with social justice look like?"
+  },
+  {
+    "objectID": "bibliometrix.html",
+    "href": "bibliometrix.html",
+    "title": "Bibliometrix",
+    "section": "",
+    "text": "I tested a lot of different analyses in bibliometrix including co-citation analysis, network analysis, most frequent word counts, and more. I only present information from the most frequent word counts here because I can interpret these figures more than the others and because they seem more relevant to my research questions."
+  },
+  {
+    "objectID": "bibliometrix.html#most-frequent-words",
+    "href": "bibliometrix.html#most-frequent-words",
+    "title": "Bibliometrix",
+    "section": "Most Frequent Words",
+    "text": "Most Frequent Words\n\n\n\nFigure 7. This figure shows the most frequent bigrams in the abstracts of the social justice in techncial communication publications from the first dataset. Unsurprisingly, the most frequent bigrams are social justice, professional communication, and techncial communication. This is unsurprising because I found this dataset by specifically searching for articles with the topic “social justice” and filtering to only include publications from TPC journals and books. The other topics after the first five provide a list of topics within the realm of social justice, like plain langauge, user experience, indigenous language, and disability justice. However, since disability justice, for example, only shows up 5 times, it’s possible that disability justice only appears in the abstract of one or two publications. I looked through the abstracts and confirmed that “disability justice” appears 4 times in the abstract of one publication and 1 time in another publication abstract. Something similar may be true for other bigrams in this figure. Thus, if one publication uses a bigram more than once in the abstract, it could make the bigram look more representative across publications than it actually is.\n\n\n\n\n\nFigure 8. This figure shows the most freqent bigrams in the abstracts of the publications citing Jones, Moore, and Walton (2016). Social justice was the most frequently used bigram in the publications–appearing 42 times. This means that at least some publications citing Jones, Moore, and Walton (2016) engage with social justice in some way. It’s not possible to measure how meaningfully publications engage with social justice or even how many publications engage with social justice from this figure. Other social justice-oriented topics show up here, too, with things like indigenous language, community engagement, mental health, marginalized communities, and disability justice. As in Figure 7, disability justice appears 5 times in abstracts of this dataset, so I guessed that the same two publications using disability justice in the abstracts were likely in both datasets. I confirmed this guess by looking at both of the datasets.\n\n\nThe most frequent word counts don’t provide clear answers to my research questions but they provided space for me to explore important limitations of my data sets."
+  },
+  {
+    "objectID": "Excel.html",
+    "href": "Excel.html",
+    "title": "Excel",
+    "section": "",
+    "text": "In an attempt to better understand how technical communication publications engage with social justice, I did some manual and computer-assisted counting within each of the publications that cited Jones, Moore, and Walton (2016). Specifically, I used the Command-F function on my Mac to count how many times the publications used “social justice” in the main text.\nI also used the Command-F function to find where sources cited Jones, Moore, and Walton (2016) and I tracked the sections of the text where “social justice” was used and where Jones, Moore, and Walton (2016) were cited."
+  },
+  {
+    "objectID": "Excel.html#counting-the-use-of-social-justice-in-the-main-text",
+    "href": "Excel.html#counting-the-use-of-social-justice-in-the-main-text",
+    "title": "Excel",
+    "section": "Counting the Use of Social Justice in the Main Text",
+    "text": "Counting the Use of Social Justice in the Main Text\n\n\n\nTable 1. This table shows the number of times social justice appears in the main text of each publication. The use of social justice in titles, abstracts, keywords, references, acknowledgements, and notes on contributor were excluded. In 13 of the 105 total publications citing Jones, Moore, and Walton (2016), social justice appeared 0 times in the main text. Additionally, social justice appeared 3 or fewer times in the text of about 44% of the publications. Social justice appeared 20 or more times in 16 of the publications and 50 or more times in 3 publications. This is a little disappointing, because it suggests that if publications citing Jones, Moore, and Walton (2016) don’t often use the term social justice frequently, they may not be engaging with social justice very meaningfully. However, I think it’s possible to engage with social justice without using the words social justice, so this data alone doesn’t give enough information to say whether or not publications strongly engage with social justice.\n\n\n\n\n\nTable 2. This table shows the average number of times social justice appears in the main text of publications in addition to the mode and range of how many times social justice appears in the main text of each publication. The average use of social justice in the publications is about 11 times. The mode is 1 meaning that the use of social justice 1 time in the main text is most common in this data set. The lowest and highest number of times social justice appears in the main text of the publications is 0 and 100, respectively."
+  },
+  {
+    "objectID": "Excel.html#looking-into-sections-of-the-texts",
+    "href": "Excel.html#looking-into-sections-of-the-texts",
+    "title": "Excel",
+    "section": "Looking into Sections of the Texts",
+    "text": "Looking into Sections of the Texts\n\n\n\nFigure 9. I tracked if social justice shows up in each IMRaD section of the publications, because I guessed that publications using social justice in each section would have strong engagement with social justice. 11 of the publications include social justice in each IMRaD section, while 50 publications do not. A good portion of the publications are formatted in something other than IMRaD so those were marked as not applicable (NA).\n\n\n\n\n\nFigure 10. This figure shows how many of the publications follow IMRaD. A little over 60 of the publications follow IMRaD and a little over 40 do not. I was unable to access a couple of the publications so those were marked as not applicable (NA).\n\n\n\n\n\nFigure 11. This graph shows how many publications use social justice in different sections and parts of the publications. Social justice most often appears in the Introduction/Literature Review and Discussion/Conclusions sections of the publications. I assume that I would find the most limited engagement with social justice in publications that use social justice only in the introduction/literature review sections. The introduction and literature review sections seem like places where someone could drop a quick citation without connecting the work they’re citing deeply to their own research. I think this could similarly be the case in the discussion/conclusions sections. Looking in the methods section, however, seems like a good way to track if scholars are actually incorporating social justice into their research through things like data collection and analysis. 19 or about one fifth of the publications include social justice in the methods section. This suggests that about one fifth of the publications may strongly engage with social justice. However, engagement can’t really be measured here without looking more closely in the texts.\n\n\n\n\n\nFigure 12. This figure shows where the Jones, Moore, and Walton (2016) article is cited within the text of the publications. They are most often cited in the Introduction and Literature Review sections. My sense here is the same as with Figure 11. I assume that publications citing Jones, Moore, and Walton (2016) in the methods will more strongly engage with social justice than articles that only cite them in the Introduction or Literature review sections. However, again, this figure doesn’t actually show how publications engage with social justice.\n\n\nThe information I found in this section still doesn’t provide answers to my research questions but it brings me closer to answers or at least shows me where I might find answers."
+  },
+  {
+    "objectID": "conclusions_and_reflections.html",
+    "href": "conclusions_and_reflections.html",
+    "title": "Conclusions and Reflections",
+    "section": "",
+    "text": "I was unable to fully answer my research questions in this project, but I think the data I collected and analyzed under the Excel section of this website provided me with a better idea of places within the texts where I look for answers.\nIf I wanted to continue this project, here are some ways I imagine I could. To attempt to find publications strongly engaging with social justice, I could closely read publications that cite Jones, Moore, and Walton (2016) in the methods section, publications that use social justice in the methods section, publications that use social justice in every IMRaD section, and publications that use “social justice” in the main text more times than average. I could look for limited engagement with social justice in articles that cite Jones, Moore, and Walton (2016) in the introduction/literature review sections and that use the term social justice infrequently or never in the main text.\nIt also seems like it would be more beneficial for me to obtain data sets from somewhere outside of Web of Science (or in addition to Web of Science) because Web of Science doesn’t have access to important social justice publications in technical communication, like Walton, Moore, and Jones’ (2019) book titled Technical Communication After the Social Justice Turn: Building Coalitions for Action. However, it seems like collecting data outside of a database might include a lot more manual work. Using Web of Science for this project felt optimal for the limited amount of time I had especially because this project was more exploratory than a formal research project.\nIf I were to continue with this project, I would feel most compelled to seek out publications that engage strongly, deeply, or meaningfully with social justice rather than looking for publications that engage minimally with social justice while citing social justice scholars. My positionality as a graduate student makes me hesitant to attempt to problematize how other scholars may insufficiently engage with social justice scholarship they cite, particularly because I may be in a more vulnerable position as a graduate student compared to more experienced and tenured scholars. As a first-year PhD student, I also feel I need to gain more knowledge of the field before potentially critiquing the work of more experienced scholars.\nOne problem I anticipate in continuing this project is that I don’t have a good way to measure engagement with social justice. I have a difficult time envisioning a universal and not overly subjective way of measuring engagement over 100+ publications. It would likely take a lot of close reading and textual analysis\nLastly, if I were to pursue this research further, I would need to more deeply frame my project from a social justice perspective and expand on threads of “positionality, privilege, and power” (Jones, Moore, and Walton (2016), p. 220) within the research."
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Jones, N. N., Moore, K. R., & Walton, R. (2016). Disrupting the Past to Disrupt the Future: An Antenarrative of Technical Communication. Technical Communication Quarterly, 25(4), 211–229. https://doi.org/10.1080/10572252.2016.1224655\nWalton, R., Moore, K. R., & Jones, N. N. (2019). Introduction. In Technical communication after the social justice turn: Building coalitions for action (pp. 1-14). Routledge. https://doi-org.ezp3.lib.umn.edu/10.4324/9780429198748"
+  }
+]
